@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  .page-header
+    h3 User List
+
+  ul
+    for user in users
+      li= user.email
+      p= user
+  ul

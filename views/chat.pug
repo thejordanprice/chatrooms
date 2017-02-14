@@ -1,0 +1,260 @@
+extends layout
+
+block content
+  .page-header
+    .row
+      .col-sm-12
+        h4(class='pull-left' id='chatroom_title')
+        p(class='pull-right' id='sharelink')
+          label(for='sharethis')
+          input#sharethis(type='text', value='')
+          button(data-copytarget='#sharethis') share
+    div(id='chatlog')
+    br 
+    form.form-horizontal(action='javascript:void(0)')
+      input(type='hidden', id='csrf', name='_csrf', value=_csrf)
+      .form-group
+        .col-sm-12
+          input.form-control(type='text', name='message', id='message', placeholder='Message', autocomplete='off', autofocus)
+          input.form-control(type='hidden', name='username', id='username', placeholder='username', value=user.profile.name)
+
+      .form-group
+        .col-sm-12
+          button.col-sm-3.btn.btn-primary(type='submit' class='pull-right' onclick='sendMessage()')
+            i.fa.fa-envelope
+            | Send
+          button.col-sm-3.btn.btn-warning(onclick='removeChatroom()')
+            i.fa.fa-trash
+            | Destroy
+          div(id='loading')
+            i(class='fa fa-cog fa-spin fa-3x fa-fw')
+
+
+    br
+
+  script.
+
+    getChatLog();
+    setInterval(appendNewLog,3000);
+
+    var chatdiv = document.getElementById('chatlog');
+    var loading = document.getElementById('loading');
+    var diff = chatdiv.clientHeight + chatdiv.scrollTop;
+    var chatroom = getChatId();
+    var laststamp = '';
+    var isfocused = '';
+    var timer = '';
+
+    document.addEventListener( 'visibilitychange' , function() {
+      if (document.hidden) {
+          isfocused = false;
+      } else {
+          isfocused = true;
+      }
+    }, false );
+
+    function getChatLog() {
+      var ajax = new XMLHttpRequest();
+      ajax.onload = function() {
+        var data = JSON.parse(this.responseText);
+        if (data.chats) {
+          var chats = data.chats;
+        } else {
+          var chats = [];
+        }
+        var x = 0;
+        var html = '';
+        for (x = 0; x < chats.length; x++) {
+          var timestamp = chats[x].timestamp;
+          var atime = chats[x].time;
+          var username = chats[x].username;
+          var message = linkify(chats[x].message);
+          laststamp = timestamp;
+          html = html + '<p>(' + atime + ') ' + username + ': ' + message + '</p>';
+        }
+        if (html === '') {
+          html = 'Start talking...';
+        }
+        chatdiv.innerHTML = html;
+        loading.style.display = "none";
+        shouldScroll = chatdiv.scrollTop + chatdiv.clientHeight === chatdiv.scrollHeight;
+        if (!shouldScroll) {
+          scrollToBottom();
+        }
+        return false;
+      }
+      var url = '/api/chatlog/' + getChatId();
+      ajax.open('GET', url);
+      ajax.setRequestHeader('content-type', 'application/json');
+      ajax.send();
+      return false;
+    }
+
+    function appendNewLog() {
+      var ajax = new XMLHttpRequest();
+      ajax.onload = function() {
+        var data = JSON.parse(this.responseText);
+        if (data.chats) {
+          var chats = data.chats;
+        } else {
+          var chats = [];
+        }
+        var x = 0;
+        var html = '';
+        for (x = 0; x < chats.length; x++) {
+          var timestamp = chats[x].timestamp;
+          var atime = chats[x].time;
+          var username = chats[x].username;
+          var message = linkify(chats[x].message);
+          var diff = chatdiv.clientHeight + chatdiv.scrollTop;
+          if (laststamp !== timestamp) {
+            html = chatdiv.innerHTML;
+            html = html + '<p>(' + atime + ') ' + username + ': ' + message + '</p>';
+            chatdiv.innerHTML = html;
+            laststamp = timestamp;
+            if(username !== document.getElementById('username').value) {
+              var theurl = createShareLink();
+              var chatroom = getChatId();
+              var title = 'Chat: ' + chatroom;
+              notifyMe(title, (username + ': ' + message));
+            }
+            var newdiff = chatdiv.clientHeight + chatdiv.scrollTop;
+            if (diff == newdiff) {
+              chatdiv.scrollTop = chatdiv.scrollHeight;
+            }
+          }
+          laststamp = timestamp;
+        }
+        loading.style.display = "none";
+        return false;
+      }
+      if(laststamp == '') {
+        var url = '/api/chatlog/' + getChatId();
+      }
+      if(laststamp != '') {
+        var url = '/api/chatlog/' + getChatId() + '?timestamp=' + laststamp;
+      }
+      ajax.open('GET', url);
+      ajax.setRequestHeader('content-type', 'application/json');
+      ajax.send();
+      return false;
+    }
+
+    function removeChatroom() {
+      loading.style.display = "block";
+      var chatroom = getChatId();
+      var token = document.getElementById('csrf').value;
+      var ajax = new XMLHttpRequest();
+      var url = '/api/remove/' + chatroom;
+      var body = {"id":chatroom};
+      ajax.open('POST', url);
+      ajax.setRequestHeader('content-type', 'application/json');
+      ajax.setRequestHeader('X-CSRF-Token', token);
+      ajax.send(JSON.stringify(body));
+      window.location = '/chat';
+      return false;
+    }
+
+    function sendMessage() {
+      loading.style.display = "block";
+      var message = document.getElementById('message').value;
+      var username = document.getElementById('username').value;
+      var token = document.getElementById('csrf').value;
+      var chatroom = getChatId();
+      var body = {"chatroom":chatroom,"username":username,"message":message};
+      var ajax = new XMLHttpRequest();
+      var url = '/chat/' + chatroom;
+      ajax.open('POST', url);
+      ajax.setRequestHeader('content-type', 'application/json');
+      ajax.setRequestHeader('X-CSRF-Token', token);
+      ajax.send(JSON.stringify(body));
+      document.getElementById('message').value = '';
+      return false;
+    }
+
+    function getChatId() {
+      var full_url = document.URL;
+      var url_array = full_url.split('/');
+      var last_segment = url_array[url_array.length-1];
+      return last_segment;
+    }
+
+    function createShareLink() {
+      var full_url = document.URL;
+      return full_url;
+    }
+
+    function linkify(text) {
+      var urlRegex =/(\b(https|http|ftp|file|smb):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+      return text.replace(urlRegex, function(url) {
+        return '<a href="' + url + '" target="_blank">' + url + '</a>';
+      });
+    }
+
+    function scrollToBottom() {
+      chatdiv.scrollTop = chatdiv.scrollHeight;
+    }
+
+    var notification = window.Notification || window.mozNotification || window.webkitNotification;
+    if ('undefined' === typeof notification)
+        alert('Web notification not supported');
+    else
+        notification.requestPermission(function(permission){});
+    function notifyMe(titleText, bodyText)
+    {
+        if ('undefined' === typeof notification)
+            return false;
+        var noty = new notification(
+            titleText, {
+                body: bodyText,
+                dir: 'auto',
+                lang: 'EN',
+                tag: 'notificationPopup',
+                icon: 'data:image/png;base64,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'
+            }
+        );
+        noty.onclick = function () {
+            //
+        };
+        noty.onerror = function () {
+            //
+        };
+        noty.onshow = function () {
+            //
+        };
+        noty.onclose = function () {
+            //
+        };
+        return true;
+    }
+
+
+
+      (function() {
+      'use strict';
+      document.body.addEventListener('click', copy, true);
+      function copy(e) {
+        var 
+          t = e.target,
+          c = t.dataset.copytarget,
+          inp = (c ? document.querySelector(c) : null);
+        if (inp && inp.select) {
+          inp.select();
+          try {
+            document.execCommand('copy');
+            inp.blur();
+            t.classList.add('copied');
+            setTimeout(function() { t.classList.remove('copied'); }, 1500);
+          }
+          catch (err) {
+            inp.blur();
+            t.classList.add('failure!');
+            // i dont know if this works but it should.
+            setTimeout(function() { t.classList.remove('failure!'); }, 1500);
+          }
+        }
+      }
+    })();
+
+    document.getElementById('chatroom_title').innerHTML = 'ID: <b>' + chatroom + '</b>';
+    document.getElementById('sharethis').value = createShareLink();

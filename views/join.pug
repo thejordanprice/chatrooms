@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  .page-header
+    h3 Join
+
+  br
+  .row
+    form.form-horizontal(action='javascript:void(0)')
+      input(type='hidden', id='csrf', name='_csrf', value=_csrf)
+      input(type='hidden', name='username', id='username', placeholder='username', value=user.profile.name)
+      .form-group
+        label.col-sm-2.col-md-2.control-label(for='chatroom') Chatroom
+        .col-sm-6.col-md-7
+          input.form-control(type='text', name='chatroom', id='chatroom', placeholder='ID', autocomplete='off', autofocus)
+        .col-sm-6.col-md-3
+          button.col-sm-12.col-md-3.btn.btn-primary(type='submit' onclick='joinChat()')
+            | Join
+
+    script.
+        function joinChat() {
+            var chatroom = document.getElementById('chatroom').value;
+            window.location = '/chat/' + chatroom;
+            return false;
+        }
