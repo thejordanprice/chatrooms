@@ -1,6 +1,9 @@
 # express-chatrooms
 :squirrel: My simple chat application with local, google, github single sign on; was a fork of sahat/hackathon-starter. Note: Since its currently usable and pretty secure over HTTPS, I'm slowed down the dev on this project.
 
+### Demo
+[beta.jordanprice.ml](https://beta.jordanprice.ml)
+
 ### Splash page
 ![Screenshot 1](http://i.imgur.com/eG12nZX.png)
 
