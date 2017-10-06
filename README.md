@@ -50,6 +50,8 @@ I have no problem with pull requests on this, if you would like to help continue
 
 As I say with most of my projects; I'm not a butthead an will accept all PR's unless the code is very bad.
 
+Thanks for reading and using my software.
+
 #### Splash
 ![Screenshot 1](http://i.imgur.com/eG12nZX.png)
 
