@@ -46,7 +46,7 @@ This should be straight forward to people that have done this before; this is a 
     ./public/*             // where the css/js is
     ./app.js               // the main wrapper
     
-I have no problem with pull requests on this, if you would like to help continue development; we could all benefit. :laugh: I only ask that you can please adhere to [this](github.com/thejordanprice/javascript) styleguide.
+I have no problem with pull requests on this, if you would like to help continue development; we could all benefit. :laugh: I only ask that you can please adhere to [this](https://github.com/thejordanprice/javascript) styleguide.
 
 As I say with most of my projects; I'm not a butthead an will accept all PR's unless the code is very bad.
 
