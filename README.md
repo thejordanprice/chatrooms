@@ -1,5 +1,10 @@
 # chatrooms
-:squirrel: My simple chat application with local, google, github single sign on; was a fork of sahat/hackathon-starter. Note: Since its currently usable and pretty secure over HTTPS, I'm slowed down the dev on this project.
+
+##### Description
+
+A simple chat application with local, google, github single sign on; was a fork of sahat/hackathon-starter. Note: Since its currently usable and secure over HTTPS, I'm slowed down the dev on this project. It could still be very useful for things though.
+
+The inspiration was to make a simple responsive chatroom application with ajax that had an infinite amount of chatrooms that could be easily created or destroyed at any time by any member of the party. When you're done, throw it away. Might as well; right? :squirrel:
 
 ### Demo
 
@@ -20,6 +25,24 @@
 - [ ] Some unknown thing that might be in the code somewhere.
 - [x] Ajax driven, magically the textbox keeps going.
 - [x] If you press destroy, you destroy the logs in everyone elses browser too.
+- [ ] Invite your friends...
+- [ ] Add to the [codebase](#development)
+
+### Development
+
+This should be straight forward to people that have done this before; this is a common MVC setup with mongoose, express, passport, and a few other pieces of middleware.
+
+##### File Structure
+
+    ./models/*             // mongoose models
+    ./controllers/*        // for interacting with the models
+    ./views/*              // bunch of pug files
+    ./public/*             // where the css/js is
+    ./app.js               // the main wrapper
+    
+I have no problem with pull requests on this, if you would like to help continue development; we could all benefit. :laugh: I only ask that you can please adhere to [this](github.com/thejordanprice/javascript) styleguide.
+
+As I say with most of my projects; I'm not a butthead an will accept all PR's unless the code is very bad.
 
 ### Splash page
 ![Screenshot 1](http://i.imgur.com/eG12nZX.png)
