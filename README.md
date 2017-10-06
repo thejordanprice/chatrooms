@@ -12,6 +12,8 @@
     npm install
     node app.js
     
+#### ... and then.
+    
 - [x] Get OAuth API keys.
 - [x] Use only local mongodb accounts if you wish.
 - [x] Destroy any chatroom at any time.
