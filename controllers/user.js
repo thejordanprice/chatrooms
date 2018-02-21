@@ -36,7 +36,7 @@ exports.postLogin = (req, res, next) => {
   req.assert('password', 'Password cannot be blank').notEmpty();
   req.sanitize('email').normalizeEmail({ remove_dots: false });
 
-  const errors = req.getValidationResult();
+  const errors = req.validationErrors();
 
   if (errors) {
     req.flash('errors', errors);
