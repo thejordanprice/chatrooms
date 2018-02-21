@@ -18,11 +18,13 @@ The inspiration was to make a simple responsive chatroom application with ajax t
     I will update dependencies and stuff occasionally possibly the code base as time permits.
     
 ### Getting it running...
+
 *If you plan on hosting this publicly, do a reverse proxy with nginx and TLS.*
 
     sudo apt install mongodb
     npm install
     node app.js
+    # it should be running.
     
 #### ... and then.
     
