@@ -1,0 +1,11 @@
+{
+  "apps" : [{
+    //
+    "name"      : "webserver",
+    "script"    : "app.js",
+    "watch"     : true,
+    "instances" : 4,
+    "exec_mode" : "cluster",
+    "max_memory_restart": "200M"
+  }]
+}
