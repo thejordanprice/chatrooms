@@ -5,13 +5,13 @@ var moment = require('moment');
  * Create new chat URL and redirect
  */
 exports.createNewChat = (req, res) => {
-  var rand = function() {
+  let rand = () => {
     return Math.random().toString(32).substr(7);
   };
-  var token = function() {
+  let token = () => {
     return rand() + rand();
   };
-  var url = '/chat/' + token();
+  let url = '/chat/' + token();
   res.redirect(url);
 };
 
@@ -19,16 +19,15 @@ exports.createNewChat = (req, res) => {
  * Remove chat by ID, with owner check eventually.
  */
 exports.removeChatById = (req, res) => {
-  var ok = true;
-  var errors = [];
-  var chatroom = '';
+  let ok = true;
+  let errors = [];
+  let chatroom = '';
   if (req.params.id) {
     chatroom = req.params.id;
   } else {
     ok = false;
     req.flash('errors', { msg: 'There was not a chatroom with that ID.'});
-  }
-
+  };
   if (ok) {
     Chat.remove({ 'chatroom' : chatroom }, function (err) {
       if(err) {
@@ -39,7 +38,7 @@ exports.removeChatById = (req, res) => {
     });
   } else {
     res.json(ok);
-  }
+  };
 };
 
 /**
@@ -47,7 +46,7 @@ exports.removeChatById = (req, res) => {
  * Very strange this one.
  */
 exports.joinChat = (req, res) => {
-  var ok = true;
+  let ok = true;
   res.render('join', { title: 'Join', status: ok });
 }
 
@@ -56,8 +55,8 @@ exports.joinChat = (req, res) => {
  * List all chat.
  */
 exports.getChatById = (req, res) => {
-  var ok = true;
-  var chatroom = '';
+  let ok = true;
+  let chatroom = '';
 
   if (req.params.id) {
     chatroom = req.params.id;
@@ -66,8 +65,8 @@ exports.getChatById = (req, res) => {
   }
 
   if (ok) {
-    var q = Chat.find({"chatroom":chatroom}).sort([['timestamp', 'descending']]);
-    q.exec(function(err, posts) {
+    let query = Chat.find({"chatroom":chatroom}).sort([['timestamp', 'descending']]);
+    query.exec((err, posts) => {
       posts.sort(); 
       res.render('chat', { title: chatroom, chat: posts });
     });

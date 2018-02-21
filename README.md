@@ -29,7 +29,8 @@ The inspiration was to make a simple responsive chatroom application with ajax t
 - [x] Use only local mongodb accounts if you wish.
 - [x] Destroy any chatroom at any time.
 - [x] Gravatar so everyone's already looking snazzy.
-- [ ] Some unknown thing that might be in the code somewhere.
+- [ ] Go through code and prune reduant and old techniques.
+- [ ] So far it looks decent, but I know theres things somewhere.
 - [x] Ajax driven, magically the textbox keeps going.
 - [x] If you press destroy, you destroy the logs in everyone elses browser too.
 - [ ] Invite your friends...
