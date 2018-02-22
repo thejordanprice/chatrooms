@@ -32,14 +32,15 @@ The inspiration was to make a simple responsive chatroom application with ajax t
 - [x] Use only local mongodb accounts if you wish.
 - [x] Destroy any chatroom at any time.
 - [x] Gravatar so everyone's already looking snazzy.
-- [ ] Keep list of recent chats so someone doesn't lose one.
-- [ ] Go through code and prune reduant and old techniques.
+- [x] Fix desktop notifications to be useful.
 - [x] Change notification icon to a quote symbol.
+- [x] Ajax driven, magically the textbox keeps going.
+- [x] If you press destroy, you destroy the logs in everyone elses browser too.
 - [ ] Make image links turn into images.
 - [ ] Fix mongoose promise warnings.
 - [ ] Spiffy up the FAQ a little bit.
-- [x] Ajax driven, magically the textbox keeps going.
-- [x] If you press destroy, you destroy the logs in everyone elses browser too.
+- [ ] Keep list of recent chats so someone doesn't lose one.
+- [ ] Go through code and prune reduant and old techniques.
 - [ ] Invite your friends...
 - [ ] Add to the [codebase](#development)
 
