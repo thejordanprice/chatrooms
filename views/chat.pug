@@ -213,8 +213,9 @@ block content
               }
           );
           noty.onclick = () => {
-              window.focus();
-              noty.close();
+            parent.focus();
+            window.focus();
+            this.close();
           };
           noty.onerror = () => {
               //

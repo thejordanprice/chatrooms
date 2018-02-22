@@ -26,7 +26,7 @@ The inspiration was to make a simple responsive chatroom application with ajax t
     node app.js
     # it should be running.
     
-#### ... and then.
+#### To-Do
     
 - [x] Get OAuth API keys.
 - [x] Use only local mongodb accounts if you wish.
@@ -34,6 +34,7 @@ The inspiration was to make a simple responsive chatroom application with ajax t
 - [x] Gravatar so everyone's already looking snazzy.
 - [ ] Go through code and prune reduant and old techniques.
 - [x] Change notification icon to a quote symbol.
+- [ ] Make image links turn into images.
 - [ ] Fix mongoose promise warnings.
 - [ ] Spiffy up the FAQ a little bit.
 - [x] Ajax driven, magically the textbox keeps going.
