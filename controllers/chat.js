@@ -92,7 +92,6 @@ exports.getChatLogById = (req, res) => {
   if (req.query.timestamp) {
     laststamp = req.query.timestamp;
   }
-
   if (ok) {
     if(laststamp == '') {
       // there was no last timestamp

@@ -1,3 +1,5 @@
+// Time zone fixing.
+process.env.TZ = 'America/New_York';
 /**
  * Module dependencies.
  */
@@ -25,7 +27,6 @@ const upload = multer({ dest: path.join(__dirname, 'uploads') });
 /**
  * Custom Middleware
  */
-
 const chatController = require('./controllers/chat');
 
 /**
