@@ -197,7 +197,7 @@ block content
 
     var notification = window.Notification || window.mozNotification || window.webkitNotification;
     if ('undefined' === typeof notification)
-      alert('Web notification not supported');
+      alert('Web notifications not supported');
     else
       notification.requestPermission(function(permission){});
       function notifyMe(titleText, bodyText) {
@@ -214,6 +214,8 @@ block content
           );
           noty.onclick = function () {
               window.focus();
+              parent.focus();
+              this.close();
           };
           noty.onerror = function () {
               //
