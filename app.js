@@ -158,6 +158,7 @@ app.post('/api/remove/:id', passportConfig.isAuthenticated, chatController.remov
 
 /**
  * Hidden Admin Thingys
+ * Comment out in production.
  */
 app.get('/admin/users', passportConfig.isAuthenticated, userController.listUsersByEmail);
 
