@@ -38,6 +38,7 @@ The inspiration was to make a simple responsive chatroom application with ajax t
 - [x] If you press destroy, you destroy the logs in everyone elses browser too.
 - [ ] Make image links turn into images.
 - [ ] Fix mongoose promise warnings.
+- [ ] Add emoji if easily possible.
 - [ ] Spiffy up the FAQ a little bit.
 - [ ] Keep list of recent chats so someone doesn't lose one.
 - [ ] Go through code and prune reduant and old techniques.
