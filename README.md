@@ -33,10 +33,8 @@ The inspiration was to make a simple responsive chatroom application with ajax t
 - [x] Destroy any chatroom at any time.
 - [x] Gravatar so everyone's already looking snazzy.
 - [ ] Go through code and prune reduant and old techniques.
-- [ ] So far it looks decent, but I know theres things somewhere.
-- [ ] Change notification icon to a quote symbol.
+- [x] Change notification icon to a quote symbol.
 - [ ] Fix mongoose promise warnings.
-- [ ] Make notifications timeout and possibly only one at a time.
 - [ ] Spiffy up the FAQ a little bit.
 - [x] Ajax driven, magically the textbox keeps going.
 - [x] If you press destroy, you destroy the logs in everyone elses browser too.
