@@ -24,7 +24,7 @@ exports.getLogin = (req, res) => {
 exports.listUsersByEmail = (req, res) => {
   User.find((err, users) => {
     res.render('users', { title:'User List', users: users });
-  });
+  })
 }
 
 /**
