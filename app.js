@@ -156,6 +156,8 @@ app.post('/chat/:id', passportConfig.isAuthenticated, chatController.postChatByI
 app.get('/api/chatlog', passportConfig.isAuthenticated, chatController.createNewChat);
 app.get('/api/chatlog/:id', passportConfig.isAuthenticated, chatController.getChatLogById);
 app.post('/api/remove/:id', passportConfig.isAuthenticated, chatController.removeChatById);
+//app.get('/user', passportConfig.isAuthenticated, userController.createMemberPage);
+//app.get('/user/user:', passportConfig.isAuthenticated, userController.createMemberPage);
 
 /**
  * Hidden Admin Thingys

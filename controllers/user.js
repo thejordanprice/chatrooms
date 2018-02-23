@@ -27,6 +27,12 @@ exports.listUsersByEmail = (req, res) => {
   })
 }
 
+exports.createMemberPage = (req, res) => {
+  res.render('home', {
+    title: 'Home'
+  });
+}
+
 /**
  * POST /login
  * Sign in using email and password.
