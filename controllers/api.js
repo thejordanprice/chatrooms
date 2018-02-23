@@ -15,13 +15,13 @@ const clockwork = require('clockwork')({ key: process.env.CLOCKWORK_KEY });
 const paypal = require('paypal-rest-sdk');
 const lob = require('lob')(process.env.LOB_KEY);
 const ig = require('instagram-node').instagram();
-/**const foursquare = require('node-foursquare')({
+const foursquare = require('node-foursquare')({
   secrets: {
     clientId: process.env.FOURSQUARE_ID,
     clientSecret: process.env.FOURSQUARE_SECRET,
     redirectUrl: process.env.FOURSQUARE_REDIRECT_URL
   }
-});**/
+});
 
 /**
  * GET /api
