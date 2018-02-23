@@ -213,14 +213,16 @@ block content
               }
           );
           noty.onclick = function () {
-              window.focus();
-              this.close()
+            window.focus();
+            this.close();
           };
           noty.onerror = function () {
               //
           };
           noty.onshow = function () {
-              //
+            setInterval(() => {
+              this.close();
+            }, 2000);
           };
           noty.onclose = function () {
               //
