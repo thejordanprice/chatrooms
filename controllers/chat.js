@@ -6,7 +6,7 @@ var moment = require('moment');
  */
 exports.createNewChat = (req, res) => {
   let rand = () => {
-    return Math.random().toString(32).substr(7);
+    return Math.random().toString(32).substr(3);
   };
   let token = () => {
     return rand() + rand();
@@ -153,7 +153,7 @@ exports.postChatById = (req, res) => {
     ok = false;
   }
 
-  if (message == '') {
+  if (chatroom === '' || username === '' || message === '') {
     ok = false;
   }
 
