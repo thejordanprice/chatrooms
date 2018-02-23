@@ -225,6 +225,9 @@ app.get('/auth/pinterest/callback', passport.authorize('pinterest', { failureRed
  */
 app.use(errorHandler());
 
+//The 404 Route (ALWAYS Keep this as the last route)
+app.get('*', homeController.fourohfour);
+
 /**
  * Start Express server.
  */
