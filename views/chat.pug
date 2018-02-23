@@ -68,7 +68,7 @@ block content
           var timestamp = chats[x].timestamp;
           var atime = chats[x].time;
           var username = chats[x].username;
-          var message = linkify(chats[x].message);
+          var message = fancylinks(chats[x].message);
           laststamp = timestamp;
           html = html + '<p>(' + atime + ') ' + username + ': ' + message + '</p>';
         }
@@ -105,7 +105,7 @@ block content
           var timestamp = chats[x].timestamp;
           var atime = chats[x].time;
           var username = chats[x].username;
-          var message = linkify(chats[x].message);
+          var message = fancylinks(chats[x].message);
           var diff = chatdiv.clientHeight + chatdiv.scrollTop;
           if (laststamp !== timestamp) {
             html = chatdiv.innerHTML;
@@ -184,11 +184,20 @@ block content
       return full_url;
     }
 
-    function linkify(text) {
-      var urlRegex =/(\b(https|http|ftp|file|smb):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-      return text.replace(urlRegex, function(url) {
-        return '<a href="' + url + '" target="_blank">' + url + '</a>';
-      });
+    const fancylinks = (text) => {
+      if (/(https?:\/\/.*\.(?:png|jpg))/ig.test(text) === true) {
+        let urlRegex = /(https?:\/\/.*\.(?:png|jpg))/ig;
+        return text.replace(urlRegex, (url) => {
+          return '<a href="' + url + '" target="_blank"><img style="max-width: 50px;" src="' + url + '" /></a>';
+        });
+      }
+
+      if (/(\b(https|http|ftp|file|smb):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig.test(text) === true) {
+        let urlRegex = /(\b(https|http|ftp|file|smb):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+        return text.replace(urlRegex, (url) => {
+          return '<a href="' + url + '" target="_blank">' + url + '</a>';
+        });
+      }
     }
 
     function scrollToBottom() {
