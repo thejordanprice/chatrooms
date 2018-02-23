@@ -30,14 +30,16 @@ I have been hosting a demo of it on a Pi 3 available here. [https://chat.thejord
 - [x] Get OAuth API keys.
 - [x] Use only local mongodb accounts if you wish.
 - [x] Destroy any chatroom at any time.
-- [ ] Remove foursquare api.
-- [ ] Move some javascript out of pug and into a file.
+- [x] Remove foursquare api.
+- [x] Move some javascript out of pug and into a file.
+- [x] Make base64 favicon an actual file.
+- [ ] Fix 404 pages.
 - [x] Gravatar so everyone's already looking snazzy.
 - [ ] Keep list of recent chats so someone doesn't lose one.
 - [ ] Go through code and prune reduant and old techniques.
 - [x] Change notification icon to a quote symbol.
 - [ ] Make image links turn into images.
-- [ ] Fix mongoose promise warnings.
+- [x] Fix mongoose promise warnings.
 - [ ] Spiffy up the FAQ a little bit.
 - [x] Ajax driven, magically the textbox keeps going.
 - [x] If you press destroy, you destroy the logs in everyone elses browser too.
