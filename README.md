@@ -14,8 +14,7 @@ The inspiration was to make a simple responsive chatroom application with ajax t
 
 ### Demo
 
-    Sorry the demo is no longer running. Feel free to clone/fork/pull request as you desire.
-    I will update dependencies and stuff occasionally possibly the code base as time permits.
+I have been hosting a demo of it on a Pi 3 available here. [https://chat.thejordanprice.com](https://chat.thejordanprice.com)
     
 ### Getting it running...
 
@@ -28,12 +27,24 @@ The inspiration was to make a simple responsive chatroom application with ajax t
     
 #### To-Do
     
+- [x] Get OAuth API keys.
+- [x] Use only local mongodb accounts if you wish.
+- [x] Destroy any chatroom at any time.
+- [ ] Remove foursquare api.
+- [x] Move some javascript out of pug and into a file.
+- [x] Make base64 favicon an actual file.
+- [ ] Fix 404 pages.
+- [x] Gravatar so everyone's already looking snazzy.
 - [ ] Keep list of recent chats so someone doesn't lose one.
 - [ ] Go through code and prune reduant and old techniques.
-- [ ] Mobile service worker notifications.
+- [x] Change notification icon to a quote symbol.
 - [ ] Make image links turn into images.
 - [ ] Fix mongoose promise warnings.
 - [ ] Spiffy up the FAQ a little bit.
+- [x] Ajax driven, magically the textbox keeps going.
+- [x] If you press destroy, you destroy the logs in everyone elses browser too.
+- [ ] Invite your friends...
+- [ ] Add to the [codebase](#development)
 
 ### Development
 

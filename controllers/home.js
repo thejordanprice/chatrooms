@@ -8,12 +8,6 @@ exports.index = (req, res) => {
   });
 };
 
-exports.fourohfour = (req, res) => {
-  res.render('fourohfour', {
-    title: '404'
-  });
-}
-
 exports.faq = (req, res) => {
   res.render('faq', {
     title: 'FAQ'

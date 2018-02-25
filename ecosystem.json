@@ -1,11 +1,11 @@
 {
   "apps" : [{
     //
-    "name"      : "chatrooms-www",
+    "name"      : "webserver",
     "script"    : "app.js",
-    "watch"     : false,
-    "instances" : 1,
+    "watch"     : true,
+    "instances" : 4,
     "exec_mode" : "cluster",
-    "max_memory_restart": "350M"
+    "max_memory_restart": "200M"
   }]
 }
