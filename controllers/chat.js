@@ -54,7 +54,7 @@ exports.joinChat = (req, res) => {
  * GET /chat
  * List all chat.
  */
-exports.getChatById = (req, res) => {
+const getChatById = (req, res) => {
   let ok = true;
   let chatroom = '';
 
