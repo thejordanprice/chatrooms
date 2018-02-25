@@ -34,14 +34,23 @@ const gravatar = (user, size) => {
  * List Users
  */
 exports.listUsersByEmail = (req, res) => {
+  let newUsers = [];
   User.find((err, users) => {
     users.forEach((user) => {
-      avatar = gravatar(user, 200);
+      // console.log(user.email);
+      let avatar = gravatar(user.email.toString(), 100)
+      newUsers.push({user:user, avatar:avatar});
     });
+    //console.log(newUsers);
+    res.render('users', {
+      title: 'User List Beta',
+      users: newUsers,
+    });
+    /** 
     res.render('users', {
       title:'User List',
-      users: users, avatars: avatar
-    });
+      users: newUsers
+    });*/
   })
 }
 

@@ -7,15 +7,15 @@ block content
   if users
     ul
       for user in users
-        if user.profile.name
+        if user.user.profile.name
           li
-            h4= user.profile.name
-            if avatar
-              img(src=avatar)
+            h4= user.user.profile.name
+            if user.avatar
+              img(src=user.avatar)
               br
               br
-            p= user.email
-            if user.profile.website
-              a(href=user.profile.website)= user.profile.website
+            p= user.user.email
+            if user.user.profile.website
+              a(href=user.user.profile.website)= user.user.profile.website
           il
     ul
