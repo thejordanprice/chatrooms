@@ -17,7 +17,7 @@ exports.getLogin = (req, res) => {
   });
 };
 
-const gravatar = (user, size) => {
+exports.gravatar = (user, size) => {
   if (!size) {
     size = 200;
   };
@@ -35,12 +35,9 @@ const gravatar = (user, size) => {
  */
 exports.listUsersByEmail = (req, res) => {
   User.find((err, users) => {
-    users.forEach((user) => {
-      avatar = gravatar(user, 200);
-    });
     res.render('users', {
       title:'User List',
-      users: users, avatars: avatar
+      users: users
     });
   })
 }
