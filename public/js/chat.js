@@ -69,7 +69,7 @@ function appendNewLog() {
       var timestamp = chats[x].timestamp;
       var atime = chats[x].time;
       var username = chats[x].username;
-      var message = linkify(chats[x].message);
+      var message = chats[x].message;
       var diff = chatdiv.clientHeight + chatdiv.scrollTop;
       if (laststamp !== timestamp) {
         html = chatdiv.innerHTML;

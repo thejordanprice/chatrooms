@@ -17,7 +17,7 @@ exports.getLogin = (req, res) => {
   });
 };
 
-const gravatar = (user, size) => {
+exports.gravatar = (user, size) => {
   if (!size) {
     size = 200;
   };
