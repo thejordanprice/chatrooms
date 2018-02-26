@@ -1,4 +1,4 @@
-# chatrooms
+![Logoish](https://i.imgur.com/vSXqYnW.png)
 
 [![GitHub issues](https://img.shields.io/github/issues/thejordanprice/chatrooms.svg)](https://github.com/thejordanprice/chatrooms/issues)
 [![GitHub stars](https://img.shields.io/github/stars/thejordanprice/chatrooms.svg)](https://github.com/thejordanprice/chatrooms/stargazers)
