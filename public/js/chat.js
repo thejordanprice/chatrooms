@@ -14,7 +14,7 @@ document.addEventListener( 'visibilitychange' , () => {
   }
 }, false );
 
-const getChatLog = () => {
+function getChatLog = () {
   var ajax = new XMLHttpRequest();
   ajax.onload = function() {
     var data = JSON.parse(this.responseText);
