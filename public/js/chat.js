@@ -1,6 +1,3 @@
-getChatLog();
-setInterval(appendNewLog,1500);
-
 const chatdiv = document.getElementById('chatlog');
 const loading = document.getElementById('loading');
 let diff = chatdiv.clientHeight + chatdiv.scrollTop;
@@ -17,7 +14,7 @@ document.addEventListener( 'visibilitychange' , () => {
   }
 }, false );
 
-function getChatLog() {
+const getChatLog = () => {
   var ajax = new XMLHttpRequest();
   ajax.onload = function() {
     var data = JSON.parse(this.responseText);
@@ -54,10 +51,16 @@ function getChatLog() {
   return false;
 }
 
+getChatLog();
+
 function appendNewLog() {
   var ajax = new XMLHttpRequest();
-  ajax.onload = function() {
+  ajax.onload = () => {
     var data = JSON.parse(this.responseText);
+    if (!data.chats) {
+      let title = document.getElementById('chatroom_title')
+      title.innerHTML = title.innerHTML + '<div class="alert alert-danger fade in"><button class="close" type="button" data-dismiss="alert"><i class="fa fa-times-circle-o"></i></button><div>The server is not currently responding.</div>';
+    }
     if (data.chats) {
       var chats = data.chats;
     } else {
@@ -103,6 +106,8 @@ function appendNewLog() {
   ajax.send();
   return false;
 }
+
+setInterval(appendNewLog,1500);
 
 function removeChatroom() {
   loading.style.display = "block";
@@ -152,7 +157,7 @@ function magicify(text) {
   let imgRegex =/([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i;
   if (imgRegex.test(text) === true) {
     return text.replace(imgRegex, function(url) {
-      return '<a href="' + url + '" target="_blank"><img style="width:75px" src="' + url + '" /></a>';
+      return '<img style="width:75px" onclick="lightbox(this)" src="' + url + '" />';
     });
   } else {
     let urlRegex =/(\b(https|http|ftp|file|smb):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
