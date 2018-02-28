@@ -1,4 +1,4 @@
-# chatrooms
+![Logoish](https://i.imgur.com/dnUjzg3.png)
 
 [![GitHub issues](https://img.shields.io/github/issues/thejordanprice/chatrooms.svg)](https://github.com/thejordanprice/chatrooms/issues)
 [![GitHub stars](https://img.shields.io/github/stars/thejordanprice/chatrooms.svg)](https://github.com/thejordanprice/chatrooms/stargazers)
@@ -14,8 +14,7 @@ The inspiration was to make a simple responsive chatroom application with ajax t
 
 ### Demo
 
-    Sorry the demo is no longer running. Feel free to clone/fork/pull request as you desire.
-    I will update dependencies and stuff occasionally possibly the code base as time permits.
+There is a demo running at [https://chatrooms.exploited.pro](https://chatrooms.exploited.pro).
     
 ### Getting it running...
 
