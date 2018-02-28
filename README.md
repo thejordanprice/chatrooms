@@ -30,7 +30,7 @@ There is a demo running at [https://chatrooms.exploited.pro](https://chatrooms.e
 - [ ] Keep list of recent chats so someone doesn't lose one.
 - [ ] Go through code and prune reduant and old techniques.
 - [ ] Mobile service worker notifications.
-- [ ] Make image links turn into images.
+- [x] Make image links turn into images.
 - [ ] Fix mongoose promise warnings.
 - [ ] Spiffy up the FAQ a little bit.
 
