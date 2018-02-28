@@ -1,15 +1,15 @@
 getChatLog();
 setInterval(appendNewLog,1500);
 
-var chatdiv = document.getElementById('chatlog');
-var loading = document.getElementById('loading');
-var diff = chatdiv.clientHeight + chatdiv.scrollTop;
-var chatroom = getChatId();
-var laststamp = '';
-var isfocused = '';
-var timer = '';
+const chatdiv = document.getElementById('chatlog');
+const loading = document.getElementById('loading');
+let diff = chatdiv.clientHeight + chatdiv.scrollTop;
+let chatroom = getChatId();
+let laststamp = '';
+let isfocused = '';
+let timer = '';
 
-document.addEventListener( 'visibilitychange' , function() {
+document.addEventListener( 'visibilitychange' , () => {
   if (document.hidden) {
       isfocused = false;
   } else {
@@ -32,7 +32,7 @@ function getChatLog() {
       var timestamp = chats[x].timestamp;
       var atime = chats[x].time;
       var username = chats[x].username;
-      var message = linkify(chats[x].message);
+      var message = magicify(chats[x].message);
       laststamp = timestamp;
       html = html + '<p>(' + atime + ') ' + username + ': ' + message + '</p>';
     }
@@ -69,7 +69,7 @@ function appendNewLog() {
       var timestamp = chats[x].timestamp;
       var atime = chats[x].time;
       var username = chats[x].username;
-      var message = linkify(chats[x].message);
+      var message = magicify(chats[x].message);
       var diff = chatdiv.clientHeight + chatdiv.scrollTop;
       if (laststamp !== timestamp) {
         html = chatdiv.innerHTML;
@@ -148,12 +148,23 @@ function createShareLink() {
   return full_url;
 }
 
-function linkify(text) {
-  var urlRegex =/(\b(https|http|ftp|file|smb):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-  return text.replace(urlRegex, function(url) {
-    return '<a href="' + url + '" target="_blank">' + url + '</a>';
-  });
-}
+function magicify(text) {
+  let imgRegex =/([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i;
+  if (imgRegex.test(text) === true) {
+    return text.replace(imgRegex, function(url) {
+      return '<a href="' + url + '" target="_blank"><img style="width:75px" onClick="lightbox(this)" src="' + url + '" /></a>';
+    });
+  } else {
+    let urlRegex =/(\b(https|http|ftp|file|smb):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+    if (urlRegex.test(text) === true) {
+      return text.replace(urlRegex, function(url) {
+        return '<a href="' + url + '" target="_blank">' + url + '</a>';
+      });
+    } else {
+      return text;
+    }
+  }
+};
 
 function scrollToBottom() {
   chatdiv.scrollTop = chatdiv.scrollHeight;
@@ -222,5 +233,5 @@ else
   }
 })();
 
-document.getElementById('chatroom_title').innerHTML = 'ID: <b>' + chatroom + '</b>';
+document.getElementById('chatroom_title').innerHTML = '<i class="fa fa-hashtag fa-x2"></i><b>' + chatroom + '</b>';
 document.getElementById('sharethis').value = createShareLink();
