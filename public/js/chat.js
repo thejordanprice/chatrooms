@@ -152,7 +152,7 @@ function magicify(text) {
   let imgRegex =/([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i;
   if (imgRegex.test(text) === true) {
     return text.replace(imgRegex, function(url) {
-      return '<img style="width:75px" onclick="lightbox(this)" src="' + url + '" />';
+      return '<img style="height:25px" onclick="lightbox(this)" src="' + url + '" />';
     });
   } else {
     let urlRegex =/(\b(https|http|ftp|file|smb):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
