@@ -31,6 +31,7 @@ There is a demo running at [https://chatrooms.exploited.pro](https://chatrooms.e
 - [ ] Go through code and prune reduant and old techniques.
 - [ ] Mobile service worker notifications.
 - [x] Make image links turn into images.
+- [ ] Make youtube links display embeds.
 - [ ] Fix mongoose promise warnings.
 - [ ] Spiffy up the FAQ a little bit.
 
