@@ -1,15 +1,15 @@
 getChatLog();
 setInterval(appendNewLog,1500);
 
-const chatdiv = document.getElementById('chatlog');
-const loading = document.getElementById('loading');
-let diff = chatdiv.clientHeight + chatdiv.scrollTop;
-let chatroom = getChatId();
-let laststamp = '';
-let isfocused = '';
-let timer = '';
+var chatdiv = document.getElementById('chatlog');
+var loading = document.getElementById('loading');
+var diff = chatdiv.clientHeight + chatdiv.scrollTop;
+var chatroom = getChatId();
+var laststamp = '';
+var isfocused = '';
+var timer = '';
 
-document.addEventListener( 'visibilitychange' , () => {
+document.addEventListener( 'visibilitychange' , function() {
   if (document.hidden) {
       isfocused = false;
   } else {
@@ -152,7 +152,7 @@ function magicify(text) {
   let imgRegex =/([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i;
   if (imgRegex.test(text) === true) {
     return text.replace(imgRegex, function(url) {
-      return '<a href="' + url + '" target="_blank"><img style="width:75px" onClick="lightbox(this)" src="' + url + '" /></a>';
+      return '<img style="width:75px" onclick="lightbox(this)" src="' + url + '" />';
     });
   } else {
     let urlRegex =/(\b(https|http|ftp|file|smb):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
@@ -233,5 +233,5 @@ else
   }
 })();
 
-document.getElementById('chatroom_title').innerHTML = '<i class="fa fa-hashtag fa-x2"></i><b>' + chatroom + '</b>';
+document.getElementById('chatroom_title').innerHTML = 'ID: <b>' + chatroom + '</b>';
 document.getElementById('sharethis').value = createShareLink();

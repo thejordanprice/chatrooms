@@ -8,11 +8,14 @@ block content
     ul
       for user in users
         if user.profile.name
-          h4= user.profile.name
-          p= user.email
-          if user.profile.website
-            a(href=user.profile.website)= user.profile.website
-            br
-            br
-        pre=JSON.stringify(user, null, 2)
+          li
+            h4= user.profile.name
+            if avatar
+              img(src=avatar)
+              br
+              br
+            p= user.email
+            if user.profile.website
+              a(href=user.profile.website)= user.profile.website
+          il
     ul

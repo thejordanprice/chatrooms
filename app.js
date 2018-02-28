@@ -156,12 +156,14 @@ app.post('/chat/:id', passportConfig.isAuthenticated, chatController.postChatByI
 app.get('/api/chatlog', passportConfig.isAuthenticated, chatController.createNewChat);
 app.get('/api/chatlog/:id', passportConfig.isAuthenticated, chatController.getChatLogById);
 app.post('/api/remove/:id', passportConfig.isAuthenticated, chatController.removeChatById);
+//app.get('/user', passportConfig.isAuthenticated, userController.createMemberPage);
+//app.get('/user/user:', passportConfig.isAuthenticated, userController.createMemberPage);
 
 /**
  * Hidden Admin Thingys
  * Comment out in production.
  */
-app.get('/admin/users', passportConfig.isAuthenticated, userController.listUsersByEmail);
+app.get('/users', passportConfig.isAuthenticated, userController.listUsersByEmail);
 
 /**
  * OAuth authentication routes. (Sign in)
@@ -224,6 +226,9 @@ app.get('/auth/pinterest/callback', passport.authorize('pinterest', { failureRed
  * Error Handler.
  */
 app.use(errorHandler());
+
+//The 404 Route (ALWAYS Keep this as the last route)
+app.get('*', homeController.fourohfour);
 
 /**
  * Start Express server.

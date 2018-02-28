@@ -17,14 +17,35 @@ exports.getLogin = (req, res) => {
   });
 };
 
+exports.gravatar = (user, size) => {
+  if (!size) {
+    size = 200;
+  };
+  if (!user.email) {
+    return `https://gravatar.com/avatar/?s=${size}&d=retro`;
+  } else {
+    const md5 = crypto.createHash('md5').update(user.email).digest('hex');
+    const string = `https://gravatar.com/avatar/${md5}?s=${size}&d=retro`;
+    return string;
+  };
+};
 
 /**
  * List Users
  */
 exports.listUsersByEmail = (req, res) => {
   User.find((err, users) => {
-    res.render('users', { title:'User List', users: users });
+    res.render('users', {
+      title:'User List',
+      users: users
+    });
   })
+}
+
+exports.createMemberPage = (req, res) => {
+  res.render('home', {
+    title: 'Home'
+  });
 }
 
 /**
