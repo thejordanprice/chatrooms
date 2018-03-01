@@ -153,9 +153,11 @@ function magicify(text) {
   if (youtubeRegex.test(text) === true) {
     return text.replace(youtubeRegex, function(url) {
       let urlsplit = url.split('/')
-      let newurl = 'https://www.youtube.com/embed/' + urlsplit[3];
-      console.log(newurl);
-      return '<iframe height="25px" src="' + newurl + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+      let querysplit = urlsplit[3].split('?')[1]
+      let videosplit = querysplit.split('v=')[1]
+      console.log(videosplit)
+      let newurl = 'https://www.youtube.com/embed/' + videosplit;
+      return '<iframe height="125px" src="' + newurl + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
     });
   } else {
     let imgRegex =/([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i;
