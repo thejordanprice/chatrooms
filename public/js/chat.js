@@ -149,19 +149,29 @@ function createShareLink() {
 }
 
 function magicify(text) {
-  let imgRegex =/([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i;
-  if (imgRegex.test(text) === true) {
-    return text.replace(imgRegex, function(url) {
-      return '<img style="height:25px" onclick="lightbox(this)" src="' + url + '" />';
+  let youtubeRegex = /^(http(s)??\:\/\/)?(www\.)?((youtube\.com\/watch\?v=)|(youtu.be\/))([a-zA-Z0-9\-_])+/ig  ;
+  if (youtubeRegex.test(text) === true) {
+    return text.replace(youtubeRegex, function(url) {
+      let urlsplit = url.split('/')
+      let newurl = 'https://www.youtube.com/embed/' + urlsplit[3];
+      console.log(newurl);
+      return '<iframe height="25px" src="' + newurl + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
     });
   } else {
-    let urlRegex =/(\b(https|http|ftp|file|smb):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-    if (urlRegex.test(text) === true) {
-      return text.replace(urlRegex, function(url) {
-        return '<a href="' + url + '" target="_blank">' + url + '</a>';
+    let imgRegex =/([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i;
+    if (imgRegex.test(text) === true) {
+      return text.replace(imgRegex, function(url) {
+        return '<img style="height:25px" onclick="lightbox(this)" src="' + url + '" />';
       });
     } else {
-      return text;
+      let urlRegex =/(\b(https|http|ftp|file|smb):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+      if (urlRegex.test(text) === true) {
+        return text.replace(urlRegex, function(url) {
+          return '<a href="' + url + '" target="_blank">' + url + '</a>';
+        });
+      } else {
+        return text;
+      }
     }
   }
 };

@@ -31,10 +31,14 @@ There is a demo running at [https://chatrooms.exploited.pro](https://chatrooms.e
 - [ ] Go through code and prune reduant and old techniques.
 - [ ] Mobile service worker notifications.
 - [ ] Strip tags of input now that we're returning links and stuff.
+- [ ] Who's joined chat, in view.
 - [x] Make image links turn into images.
-- [ ] Make youtube links display embeds.
+- [x] Make youtube links display embeds.
 - [ ] Fix mongoose promise warnings.
 - [ ] Spiffy up the FAQ a little bit.
+- [ ] Websockets who's typing.
+- [ ] Websockets who's online.
+- [ ] Websockets redo the whole app.
 
 ### Development
 
