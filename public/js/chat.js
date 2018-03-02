@@ -149,31 +149,19 @@ function createShareLink() {
 }
 
 function magicify(text) {
-  let youtubeRegex = /^(http(s)??\:\/\/)?(www\.)?((youtube\.com\/watch\?v=)|(youtu.be\/))([a-zA-Z0-9\-_])+/ig  ;
-  if (youtubeRegex.test(text) === true) {
-    return text.replace(youtubeRegex, function(url) {
-      let urlsplit = url.split('/')
-      let querysplit = urlsplit[3].split('?')[1]
-      let videosplit = querysplit.split('v=')[1]
-      console.log(videosplit)
-      let newurl = 'https://www.youtube.com/embed/' + videosplit;
-      return '<iframe height="125px" src="' + newurl + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+  let imgRegex =/([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i;
+  if (imgRegex.test(text) === true) {
+    return text.replace(imgRegex, function(url) {
+      return '<img style="height:25px" onclick="lightbox(this)" src="' + url + '" />';
     });
   } else {
-    let imgRegex =/([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i;
-    if (imgRegex.test(text) === true) {
-      return text.replace(imgRegex, function(url) {
-        return '<img style="height:25px" onclick="lightbox(this)" src="' + url + '" />';
+    let urlRegex =/(\b(https|http|ftp|file|smb):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+    if (urlRegex.test(text) === true) {
+      return text.replace(urlRegex, function(url) {
+        return '<a href="' + url + '" target="_blank">' + url + '</a>';
       });
     } else {
-      let urlRegex =/(\b(https|http|ftp|file|smb):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-      if (urlRegex.test(text) === true) {
-        return text.replace(urlRegex, function(url) {
-          return '<a href="' + url + '" target="_blank">' + url + '</a>';
-        });
-      } else {
-        return text;
-      }
+      return text;
     }
   }
 };
